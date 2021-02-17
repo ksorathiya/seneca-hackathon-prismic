@@ -30,8 +30,9 @@ type Props = {
 };
 
 export default function StagePage({ stage, allStages }: Props) {
+  console.log(allStages, stage);
   const meta = {
-    title: 'Demo - Virtual Event Starter Kit',
+    title: 'Demo',
     description: META_DESCRIPTION
   };
 

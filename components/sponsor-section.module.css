@@ -31,6 +31,7 @@
   display: block;
   padding: 24px;
   min-width: initial;
+  flex: 1;
 }
 
 @media (min-width: 960px) {
@@ -75,7 +76,7 @@
 }
 
 .backlink:hover {
-  color: #fff;
+  color: var(--brand);
 }
 
 .name-and-logo {
@@ -99,6 +100,7 @@
 .image {
   overflow: hidden;
   width: 100%;
+  height: 100%;
   border-radius: 50%;
   width: var(--space-16x);
   height: var(--space-16x);
@@ -109,7 +111,7 @@
 
 .name {
   font-weight: 800;
-  color: #fff;
+  color: var(--brand);
   font-size: 30px;
   margin: 0;
   line-height: 1.4;
@@ -120,8 +122,8 @@
 .button {
   border-radius: var(--space-2x);
   border: 1px solid #fff;
-  color: #000;
-  background: #fff;
+  color: #fff;
+  background: #000;
   cursor: pointer;
   font-family: inherit;
   font-size: var(--text-md);
@@ -141,8 +143,9 @@
 
 .button:hover,
 .button:focus {
-  background: black;
-  color: #fff;
+  background: white;
+  color: var(--brand);
+  border: 1px solid var(--brand);
 }
 
 .button > svg {
@@ -152,9 +155,9 @@
 }
 
 .button-resource {
-  background: #111111;
+  background: var(--brand);
   color: #fff;
-  border: 1px solid var(--accents-7);
+  /* border: 1px solid var(--accents-7); */
   max-width: 100%;
   margin-bottom: var(--space-4x);
 }
@@ -172,7 +175,7 @@
 }
 
 .button-link {
-  background: #000;
+  background: var(--brand);
   color: #fff;
   border: none;
 }
@@ -188,7 +191,7 @@
 
 .heading {
   font-weight: 800;
-  color: #fff;
+  color: var(--textcolor);
   font-size: 24px;
   margin: var(--space-4x) 0;
   line-height: 1.4;
@@ -218,4 +221,15 @@
   .image {
     margin: 0 24px 0 0;
   }
+}
+
+.image1 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }

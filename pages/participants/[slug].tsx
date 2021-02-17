@@ -14,44 +14,60 @@
  * limitations under the License.
  */
 
-import { GetStaticProps } from 'next';
+import { GetStaticProps, GetStaticPaths } from 'next';
 
 import Page from '@components/page';
-import Schedule from '@components/schedule';
+import SpeakerSection from '@components/speaker-section';
 import Layout from '@components/layout';
-import Header from '@components/header';
 
-import { getAllStages } from '@lib/cms-api';
-import { Stage } from '@lib/types';
+import { getAllSpeakers } from '@lib/cms-api';
+import { Speaker } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
 type Props = {
-  allStages: Stage[];
+  speaker: Speaker;
 };
 
-export default function SchedulePage({ allStages }: Props) {
+export default function SpeakerPage({ speaker }: Props) {
   const meta = {
-    title: 'Schedule',
+    title: 'Demo',
     description: META_DESCRIPTION
   };
 
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Schedule" description={meta.description} />
-        <Schedule allStages={allStages} />
+        <SpeakerSection speaker={speaker} />
       </Layout>
     </Page>
   );
 }
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const allStages = await getAllStages();
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+  const slug = params?.slug;
+  const speakers = await getAllSpeakers();
+  const currentSpeaker = speakers.find((s: Speaker) => s.slug === slug) || null;
+
+  if (!currentSpeaker) {
+    return {
+      notFound: true
+    };
+  }
 
   return {
     props: {
-      allStages
+      speaker: currentSpeaker
     },
     revalidate: 60
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const speakers = await getAllSpeakers();
+  const slugs = speakers.map((s: Speaker) => ({ params: { slug: s.slug } }));
+
+  return {
+    paths: slugs,
+    fallback: false
   };
 };

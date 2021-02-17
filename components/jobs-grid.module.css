@@ -80,6 +80,30 @@
   display: none;
 }
 
+.card1 {
+  top: 0px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-clip: content-box, border-box;
+  background-color: #fafafa;
+  border-radius: var(--space-2x);
+  /* padding: 32px 24px; */
+  /* margin: 12px; */
+  text-decoration: none;
+  overflow: hidden;
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid #55585a;
+}
+.card1:hover {
+  transition: all 0.4s ease-out;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0);
+  top: -8px;
+  border: 3px solid var(--brand);
+}
+
 .card {
   border-radius: var(--space-2x);
   background: #111111;
@@ -109,14 +133,14 @@
 
 .title {
   font-weight: bold;
-  color: #f1f1f1;
+  color: #000;
   font-size: 20px;
   margin: 0;
   line-height: 1.4;
 }
 
 .company {
-  color: #f1f1f1;
+  color: #000;
   margin: var(--space) 0 0 0;
 }
 
@@ -125,6 +149,7 @@
 }
 
 .description {
+  color: #000;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -134,26 +159,26 @@
 .link {
   display: flex;
   align-items: center;
-  color: #fff;
+  color: #000;
   font-weight: bold;
   font-size: var(--text-md);
   margin: 0;
 }
 
 .link:hover {
-  color: #fff;
+  color: var(--brand);
 }
 
 .icon {
-  color: #fff;
+  color: #000;
   margin-left: var(--space);
 }
 
 .button {
   border-radius: var(--space-2x);
-  border: none;
-  color: #fff;
-  background: var(--brand);
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  background: #fff;
   cursor: pointer;
   font-family: inherit;
   font-size: var(--text-md);
@@ -172,17 +197,18 @@
 
 .button:hover,
 .button:focus {
-  background: black;
-  color: var(--brand);
-  border: 1px solid var(--brand);
+  background: var(--brand);
+  color: #fff;
+  border: 1px solid #fff;
 }
 
 .button:hover > svg,
 .button:focus > svg {
-  fill: var(--brand);
+  fill: #fff;
 }
 
 .button > svg {
+  fill: var(--brand);
   margin-left: var(--space-2x);
   min-height: var(--space-8x);
   min-width: var(--space-8x);

@@ -1,10 +1,10 @@
 {
-  "name": "Virtual Event Starter Kit",
-  "description": "Fully customizable starter kit for your virtual event.",
+  "name": "Seneca Hackathon",
+  "description": "Seneca Digital Hackathon",
   "previewImage": "https://demo.vercel.events/twitter-card.png",
   "datocmsProjectId": "37685",
   "deploymentType": "vercel",
   "buildCommand": "npm run build",
-  "datocmsApiTokenEnvName": "DATOCMS_READ_ONLY_API_TOKEN",
+  "datocmsApiTokenEnvName": "f4793ae97f58c543d8db3bb55c34bf",
   "livePreviewUrl": "https://demo.vercel.events/"
 }

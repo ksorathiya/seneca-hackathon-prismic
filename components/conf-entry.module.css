@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  background: url('/bg.png') no-repeat center;
+  /* background: url('/bg.png') no-repeat center; */
   background-size: cover;
   padding: 0 var(--space-4x);
 }
@@ -73,7 +73,7 @@
   padding-left: 15px;
   padding-right: 15px;
   font-size: var(--text-md);
-  color: #fff;
+  color: #000;
   font-family: inherit;
 }
 
@@ -89,15 +89,11 @@
 }
 
 .input-label {
-  background-color: var(--gray);
+  background-color: #cacaca;
   border-radius: var(--space-2x);
   border: 1px solid transparent;
   transition: border-color 0.2s ease, background-color 0.2s ease;
   display: block;
-}
-
-.input-label.focused {
-  background-color: #33373c;
 }
 
 .input-label.error {
@@ -131,15 +127,15 @@
   height: 56px;
   margin-top: var(--space-4x);
   border-radius: var(--space-2x);
-  border: 1px solid #fff;
-  background: #fff;
+  border: 1px solid var(--brand);
+  background: var(--brand);
   cursor: pointer;
   font-family: inherit;
   font-size: var(--text-md);
   letter-spacing: -0.02em;
   outline: none;
   font-weight: 500;
-  color: #000;
+  color: #fff;
   transition: background-color 0.2s ease, color 0.2s ease;
   display: inline-flex;
   align-items: center;
@@ -163,8 +159,7 @@
 }
 
 .submit.default:hover {
-  background: black;
-  color: #fff;
+  
 }
 
 .submit.error:hover {

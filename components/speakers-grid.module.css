@@ -39,27 +39,60 @@
   display: none;
 }
 
-.card {
-  border-radius: var(--space-2x);
-  background: #111111;
+.card1 {
+  top: 0px;
+  position: relative;
   display: flex;
   flex-direction: column;
   background-clip: content-box, border-box;
-  background-image: linear-gradient(#111111, #111111), linear-gradient(to right, #333333, #333333);
-  padding: 1px;
-  cursor: pointer;
+  background-color: #f4f4f4;
+  border-radius: var(--space-2x);
+  /* padding: 32px 24px; */
+  /* margin: 12px; */
+  text-decoration: none;
+  overflow: hidden;
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid #727272;
+}
+.card1:hover {
+  transition: all 0.4s ease-out;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0);
+  background-color: var(--brand);
+  top: -8px;
+  border: 0px;
+}
+.card1:hover .company {
+  color: #fafafa;
+}
+.card1:hover .title {
+  color: #fafafa;
+}
+.card1:hover .name  {
+  color: #fafafa;
 }
 
+.card {
+  border-radius: var(--space-2x);
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  background-clip: content-box, border-box;
+  background-image: linear-gradient(#55585a, #55585a), linear-gradient(to right, #333333, #333333);
+  
+  cursor: pointer;
+}
 .card:hover,
 .card:focus {
   outline: none;
-  background-image: linear-gradient(#111111, #111111),
+  background-image: linear-gradient(var(--brand), var(--brand)),
     linear-gradient(to right, var(--brand), var(--brand));
 }
 
 .cardBody {
   padding: var(--space-4x);
-  color: var(--secondary-color);
+  color: #000;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -85,16 +118,17 @@
 
 .name {
   font-weight: bold;
-  color: #f1f1f1;
+  color: #000;
   font-size: 20px;
   margin: 0;
   line-height: 1.4;
 }
 
 .company {
-  color: #f1f1f1;
+  color: #000;
 }
 
 .title {
+  color: #000;
   margin: 0;
 }

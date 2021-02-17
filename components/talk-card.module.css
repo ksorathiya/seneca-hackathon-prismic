@@ -23,6 +23,30 @@
   margin: 0 0 var(--space-2x);
 }
 
+.card1 {
+  display: block;
+  top: 0px;
+  position: relative;
+  min-width: var(--talk-card-width, 270px);
+  max-width: var(--talk-card-width, 270px);
+  background-color: #fafafa;
+  border-radius: 4px;
+  /* padding: 32px 24px; */
+  /* margin: 12px; */
+  text-decoration: none;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid #55585a;
+}
+.card1:hover {
+  transition: all 0.2s ease-out;
+  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+  top: -4px;
+  border: 3px solid #da281c;
+  background-color: white;
+}
+
+
 .card {
   color: inherit;
   display: block;
@@ -31,10 +55,17 @@
   max-width: var(--talk-card-width, 270px);
   padding: 1px;
   background-clip: content-box, border-box;
-  background-image: linear-gradient(#111111, #111111), linear-gradient(to right, #333333, #333333);
+  background-image: linear-gradient(#55585a, #55585a), linear-gradient(to right, #55585a, #55585a);
 }
 .card:hover {
-  background-image: linear-gradient(#111111, #111111), linear-gradient(to right, #aaa, #aaa);
+  transition: all 0.3s ease-out;
+  background-image: linear-gradient(#da281c, #da281c), linear-gradient(to right, #da281c, #da281c);
+}
+.card h4 {
+  color: #ffffff;
+}
+.card h5 {
+  color: #ffffff;
 }
 
 .is-live {
@@ -49,7 +80,7 @@
 .title {
   font-size: 14px;
   font-weight: 700;
-  color: #e5e5e5;
+  color: #000;
   margin: 0;
   line-height: 1.4;
   width: 100%;

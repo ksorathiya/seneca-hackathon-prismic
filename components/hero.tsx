@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// <br className={styleUtils['show-on-desktop']} />
+
 import cn from 'classnames';
 import styleUtils from './utils.module.css';
 import styles from './hero.module.css';
@@ -32,9 +34,10 @@ export default function Hero() {
       >
         {SITE_DESCRIPTION}
       </h2>
+      <h1 className={cn(styleUtils.appear, styleUtils['appear-third'], styles.hero)}
+          style={{color:"black", marginTop: 100}}> Digital Health </h1>
       <h1 className={cn(styleUtils.appear, styleUtils['appear-third'], styles.hero)}>
-        The first {BRAND_NAME}
-        <br className={styleUtils['show-on-desktop']} /> global user conference
+        HACKATHON
       </h1>
       <h2
         className={cn(

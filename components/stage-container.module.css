@@ -28,6 +28,18 @@
   height: 100%;
 }
 
+.sidebarSticky {
+  position: fixed;
+  right: 0;
+  padding-top: 10%;
+  height: 100%;
+}
+
+.headerSticky {
+  position: fixed;
+  width: 100%;
+}
+
 .stream {
   display: flex;
   flex-direction: column;
@@ -55,7 +67,7 @@
 .stageName {
   display: flex;
   font-size: 24px;
-  color: #fff;
+  color: #000;
   line-height: 1.15;
   letter-spacing: -0.05em;
   font-weight: 800;
@@ -64,9 +76,9 @@
 
 .button {
   border-radius: var(--space-2x);
-  border: none;
+  border: solid 1px;
   color: #fff;
-  background: #3362df;
+  background: #da281c;
   cursor: pointer;
   font-family: inherit;
   font-size: var(--text-md);
@@ -86,7 +98,7 @@
 
 .button:hover,
 .button:focus {
-  background: black;
+  background: #da281c;
   color: #fff;
 }
 
@@ -94,6 +106,13 @@
   margin-left: var(--space-2x);
   min-height: var(--space-8x);
   min-width: var(--space-8x);
+}
+
+.path {
+  fill: rgb(255, 255, 255);
+  stroke: #da281c;
+  stroke-width: 5;
+  pointer-events: all;
 }
 
 .messageContainer {

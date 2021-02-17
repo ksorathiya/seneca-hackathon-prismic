@@ -20,6 +20,7 @@ import { useRouter } from 'next/router';
 import { SkipNavContent } from '@reach/skip-nav';
 import { NAVIGATION } from '@lib/constants';
 import styles from './layout.module.css';
+import formStyles from './form.module.css';
 import Logo from './icons/icon-logo';
 import MobileMenu from './mobile-menu';
 import Footer, { HostedByVercel } from './footer';
@@ -65,7 +66,16 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
               ))}
             </div>
             <div className={cn(styles['header-right'])}>
-              <HostedByVercel />
+            <a
+              href="https://b279fc3wutp.typeform.com/to/nsDQjSai"
+              
+              style={{position:"relative",top:0}}
+              className={cn(formStyles.submit, formStyles.register, formStyles['loading'])}
+              // disabled={formState === 'loading'}
+            >
+              {/* {formState === 'loading' ? <LoadingDots size={4} /> : <>Join</>} */}
+              Submit
+            </a>
             </div>
           </header>
         )}

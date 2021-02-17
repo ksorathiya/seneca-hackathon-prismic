@@ -29,16 +29,20 @@ type Props = {
   jobs: Job[];
 };
 
+let TITLE = 'Sponsors';
+let DESCRIPTION =
+  "Here's the list of all the sponsors for this year's Seneca Digital Health Hackathon.";
+
 export default function Jobs({ jobs }: Props) {
   const meta = {
-    title: 'Career Fair - Virtual Event Starter Kit',
-    description: META_DESCRIPTION
+    title: TITLE,
+    description: DESCRIPTION
   };
 
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Career Fair" description={meta.description} />
+        <Header hero={TITLE} description={DESCRIPTION} />
         <JobsGrid jobs={jobs} />
       </Layout>
     </Page>

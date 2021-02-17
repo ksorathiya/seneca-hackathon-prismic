@@ -17,40 +17,43 @@
 import { GetStaticProps } from 'next';
 
 import Page from '@components/page';
-import Schedule from '@components/schedule';
+import SpeakersGrid from '@components/speakers-grid';
 import Layout from '@components/layout';
 import Header from '@components/header';
 
-import { getAllStages } from '@lib/cms-api';
-import { Stage } from '@lib/types';
+import { getAllSpeakers } from '@lib/cms-api';
+import { Speaker } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
+let TITLE = 'Participants';
+let DESCRIPTION =
+  'A list of everyone who have participated in the Seneca Digital Health Hackathon, 2021. All are here to solve one of the listed challenges that we all are collectively facing as a human race.';
+
 type Props = {
-  allStages: Stage[];
+  speakers: Speaker[];
 };
 
-export default function SchedulePage({ allStages }: Props) {
+export default function Speakers({ speakers }: Props) {
   const meta = {
-    title: 'Schedule',
-    description: META_DESCRIPTION
+    title: TITLE,
+    description: DESCRIPTION
   };
-
   return (
     <Page meta={meta}>
       <Layout>
-        <Header hero="Schedule" description={meta.description} />
-        <Schedule allStages={allStages} />
+        <Header hero={TITLE} description={DESCRIPTION} />
+        <SpeakersGrid speakers={speakers} />
       </Layout>
     </Page>
   );
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const allStages = await getAllStages();
+  const speakers = await getAllSpeakers();
 
   return {
     props: {
-      allStages
+      speakers
     },
     revalidate: 60
   };

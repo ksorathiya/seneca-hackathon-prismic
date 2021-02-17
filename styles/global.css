@@ -42,6 +42,7 @@
   --text-lg: 18px;
   --text-xl: 24px;
 
+  --textcolor: #000;
   --accents-1: #fafafa;
   --accents-2: #eaeaea;
   --accents-3: #999999;
@@ -52,10 +53,10 @@
   --accents-8: #111111;
 
   --gray: #252729;
-  --secondary-color: #8a8f98;
-  --sidebar: #0e0e10;
-  --header-height: 72px;
-  --brand: #845ef7;
+  --secondary-color: #000;
+  --sidebar: #fafafa;
+  --header-height: 82px;
+  --brand: #da291c;
 }
 
 html {
@@ -94,8 +95,8 @@ body {
 }
 html,
 body {
-  color: #fff;
-  background-color: #111;
+  color: #000;
+  background-color: #fff;
 }
 ::selection {
   background-color: #0070f3;

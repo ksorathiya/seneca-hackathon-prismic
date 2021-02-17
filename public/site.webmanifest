@@ -1,7 +1,7 @@
 {
-  "name": "Virtual Event Starter Kit",
-  "short_name": "Virtual Event Starter Kit",
-  "description": "Virtual Event Starter Kit -> https://demo.vercel.events",
+  "name": "Seneca Hackathon",
+  "short_name": "Seneca Hackathon",
+  "description": "Seneca Hackathon",
   "display": "standalone",
   "start_url": "/",
   "theme_color": "#fff",

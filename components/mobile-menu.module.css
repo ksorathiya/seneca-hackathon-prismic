@@ -21,7 +21,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: black;
+  background: rgb(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@
   font-size: var(--space-8x);
   letter-spacing: -0.05em;
   font-weight: 800;
-  color: #fff;
+  color: rgb(0, 0, 0);
   margin-bottom: var(--space-4x);
   line-height: 1.5;
   width: fit-content;
@@ -63,7 +63,7 @@
 }
 
 .icon {
-  color: #fff;
+  color: #da281c;
   display: block;
 }
 

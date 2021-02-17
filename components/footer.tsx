@@ -27,8 +27,8 @@ export function HostedByVercel() {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <div className={styles['secondary-text']}>Created by </div>
-      <VercelLogo color="white" />
+      {/* <div className={styles['secondary-text']}>Created by </div>
+      <VercelLogo color="white" /> */}
     </a>
   );
 }
@@ -48,12 +48,13 @@ export default function Footer() {
         <div className={styles['footer-center-group']}>
           <p className={styles['footer-paragraph']}>
             <a
-              href={REPO}
+              // href={REPO}
+              href="#"
               className={styles['footer-link']}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Source Code
+              Privacy Policy
             </a>
           </p>
           <div className={styles['footer-separator']} />

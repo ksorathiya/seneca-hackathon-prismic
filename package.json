@@ -1,6 +1,6 @@
 {
   "name": "virtual-event-starter-kit",
-  "description": "Starter kit for your virtual event.",
+  "description": "Seneca Hackthon",
   "private": true,
   "repository": "vercel/virtual-event-starter-kit",
   "author": "Vercel Inc.",
@@ -16,7 +16,7 @@
     "license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js"
   },
   "dependencies": {
-    "@agility/content-fetch": "1.0.0",
+    "@agility/content-fetch": "^1.0.3",
     "@agility/content-sync": "0.1.23",
     "@reach/skip-nav": "0.12.1",
     "chrome-aws-lambda": "5.5.0",

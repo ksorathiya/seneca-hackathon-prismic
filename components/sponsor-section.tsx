@@ -43,7 +43,7 @@ export default function SponsorSection({ sponsor }: Props) {
           >
             <path d="M15 18l-6-6 6-6" />
           </svg>
-          Back to expo
+          Back
         </a>
       </Link>
       <div className={styles.layout}>
@@ -59,15 +59,34 @@ export default function SponsorSection({ sponsor }: Props) {
         />
         <div className={styles.container}>
           <div className={styles['name-and-logo']}>
-            <Image
+            {/* <img 
+              alt={sponsor.name}
+              src={sponsor.logo.url}
+              style={{
+                width:"100%",
+                height:"100%"
+              }}
+            /> */}
+            {/* <Image
+              alt={sponsor.name}
+              src={sponsor.cardImage.url}
+              className={cn(styles.image1, {
+                [styles.silver]: sponsor.tier === 'silver'
+              })}
+              loading="lazy"
+              title={sponsor.name}
+              width={900}
+              height={500}
+            /> */}
+            {/* <Image
               alt={sponsor.name}
               src={sponsor.logo.url}
               className={styles.image}
               loading="lazy"
               title={sponsor.name}
-              height={64}
-              width={64}
-            />
+              height={"300%"}
+              width={"300%"}
+            /> */}
             <h1 className={styles.name}>{sponsor.name}</h1>
           </div>
           <p className={styles.description}>{sponsor.description}</p>
@@ -79,6 +98,7 @@ export default function SponsorSection({ sponsor }: Props) {
               type="button"
               className={styles.button}
             >
+              Resources
               {sponsor.callToAction}
             </a>
             <a

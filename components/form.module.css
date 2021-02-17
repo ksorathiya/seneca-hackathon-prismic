@@ -35,7 +35,7 @@
   padding-left: 15px;
   padding-right: 15px;
   font-size: var(--text-md);
-  color: #fff;
+  color: #000;
   font-family: inherit;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .input-label {
-  background-color: var(--gray);
+  background-color: #cacaca;
   border-radius: var(--space-2x);
   border: 1px solid transparent;
   transition: border-color 0.2s ease, background-color 0.2s ease;
@@ -59,11 +59,11 @@
 }
 
 .input-label.focused {
-  background-color: #33373c;
+  
 }
 
 .input-label.error {
-  background: red;
+  background:var(--brand);
 }
 
 .input-label.success {
@@ -132,8 +132,7 @@
 
 .submit.default:hover,
 .submit.default:focus {
-  background: black;
-  color: var(--brand);
+  
 }
 
 .submit.default.generate-with-github:hover path,
