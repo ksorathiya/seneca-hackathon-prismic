@@ -18,6 +18,9 @@ import cn from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { Stage } from '@lib/types';
+
 import { parseISO, format, isBefore, isAfter } from 'date-fns';
 import { Talk } from '@lib/types';
 import styles from './talk-card.module.css';
@@ -26,6 +29,7 @@ type Props = {
   key: string;
   talk: Talk;
   showTime: boolean;
+  currentStage: Stage;
 };
 
 const formatDate = (date: string) => {
@@ -33,21 +37,31 @@ const formatDate = (date: string) => {
   return format(parseISO(date), "h:mmaaaaa'm'");
 };
 
-export default function TalkCard({ talk: { title, speaker, start, end }, showTime }: Props) {
+export default function TalkCard({
+  currentStage,
+  talk: { title, speaker, start, end },
+  showTime
+}: Props) {
+  const router = useRouter();
+  // console.log(router.query);
+
   const [isTalkLive, setIsTalkLive] = useState(false);
   const [startAndEndTime, setStartAndEndTime] = useState('');
 
   useEffect(() => {
     const now = Date.now();
-    setIsTalkLive(isAfter(now, parseISO(start)) && isBefore(now, parseISO(end)));
+    // setIsTalkLive(isAfter(now, parseISO(start)) && isBefore(now, parseISO(end)));
+    setIsTalkLive(router.query.talk === title);
     setStartAndEndTime(`${formatDate(start)} – ${formatDate(end)}`);
-  }, []);
+  });
 
-  const firstSpeakerLink = `/participants/${speaker[0].slug}`;
+  // console.log(router.query.talk, title, isTalkLive);
+  // const firstSpeakerLink = `/participants/${speaker[0].slug}`;
+  const firstSpeakerLink = `/stage/${currentStage.slug}?talk=${title}`;
 
   return (
     <div key={title} className={styles.talk}>
-      {showTime && <p className={styles.time}>{startAndEndTime || <>&nbsp;</>}</p>}
+      {/* {showTime && <p className={styles.time}>{startAndEndTime || <>&nbsp;</>}</p>} */}
       <Link href={firstSpeakerLink}>
         <a
           className={cn(styles.card1, {

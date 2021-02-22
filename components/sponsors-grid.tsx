@@ -22,7 +22,7 @@ import styles from './sponsors-grid.module.css';
 
 function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
   return (
-    <Link key={sponsor.name} href={`/expo/${sponsor.slug}`}>
+    <Link key={sponsor.title} href={`/challengesets/${sponsor.slug}`}>
       <a
         role="button"
         tabIndex={0}
@@ -33,13 +33,13 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
       >
         <div className={styles.imageWrapper}>
           <Image
-            alt={sponsor.name}
+            alt={sponsor.title}
             src={sponsor.cardImage.url}
             className={cn(styles.image, {
               [styles.silver]: sponsor.tier === 'silver'
             })}
             loading="lazy"
-            title={sponsor.name}
+            title={sponsor.title}
             width={900}
             height={500}
           />
@@ -47,7 +47,7 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
         {sponsor.tier !== 'silver' && (
           <div className={styles.cardBody}>
             <div>
-              <h2 className={styles.name}>{sponsor.name}</h2>
+              <h2 className={styles.name}>{sponsor.title}</h2>
               {/* <p className={styles.description}>{sponsor.description}</p> */}
             </div>
           </div>
@@ -62,19 +62,19 @@ type Props = {
 };
 
 export default function SponsorsGrid({ sponsors }: Props) {
-  const silverSponsors = sponsors.filter(s => s.tier === 'silver');
-  const otherSponsors = sponsors.filter(s => s.tier !== 'silver');
+  // const silverSponsors = sponsors.filter(s => s.tier === 'silver');
+  // const otherSponsors = sponsors.filter(s => s.tier !== 'silver');
 
   return (
     <>
-      <div className={styles.grid}>
+      {/* <div className={styles.grid}>
         {otherSponsors.map(sponsor => (
-          <SponsorCard key={sponsor.name} sponsor={sponsor} />
+          <SponsorCard key={sponsor.title} sponsor={sponsor} />
         ))}
-      </div>
+      </div> */}
       <div className={styles.grid}>
-        {silverSponsors.map(sponsor => (
-          <SponsorCard key={sponsor.name} sponsor={sponsor} />
+        {sponsors.map(sponsor => (
+          <SponsorCard key={sponsor.title} sponsor={sponsor} />
         ))}
       </div>
     </>

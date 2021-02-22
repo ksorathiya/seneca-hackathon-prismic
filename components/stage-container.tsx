@@ -16,6 +16,9 @@
 
 import useSWR from 'swr';
 import cn from 'classnames';
+import { useRouter } from 'next/router';
+import _ from 'underscore';
+
 import { Stage } from '@lib/types';
 import useLoginStatus from '@lib/hooks/use-login-status';
 import styles from './stage-container.module.css';
@@ -29,14 +32,30 @@ type Props = {
 };
 
 export default function StageContainer({ stage, allStages }: Props) {
+  // const response = useSWR('/api/challengesets', {
+  //   initialData: allStages,
+  //   refreshInterval: 5000
+  // });
   const response = useSWR('/api/stages', {
     initialData: allStages,
     refreshInterval: 5000
   });
 
+  const router = useRouter();
+  // console.log(router.query);
+
   const updatedStages = response.data || [];
   const updatedStage = updatedStages.find((s: Stage) => s.slug === stage.slug) || stage;
   const { loginStatus, mutate } = useLoginStatus();
+
+  let streamToPlay = '';
+  let talks = _.pluck(updatedStage, 'schedule');
+  // console.log('talks', talks, updatedStage);
+  if (router.query.talk) {
+    streamToPlay = 'https://www.google.com';
+  } else {
+    streamToPlay = updatedStage.stream;
+  }
 
   return (
     <div className={styles.container}>
@@ -49,7 +68,7 @@ export default function StageContainer({ stage, allStages }: Props) {
                 allow="autoplay; picture-in-picture"
                 allowFullScreen
                 frameBorder="0"
-                src={`${updatedStage.stream}?autoplay=1&mute=1`}
+                src={`${streamToPlay}?autoplay=1&mute=1`}
                 title={updatedStage.name}
                 width="100%"
               />

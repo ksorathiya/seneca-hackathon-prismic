@@ -18,7 +18,9 @@ import { richTextAsText, getLinkUrl } from './utils';
 
 const API_REF_URL = `https://${process.env.PRISMIC_REPO_ID}.prismic.io/api/v2`;
 const API_URL = `https://${process.env.PRISMIC_REPO_ID}.prismic.io/graphql`;
-const API_TOKEN = process.env.PRISMIC_ACCESS_TOKEN || '';
+const API_TOKEN =
+  process.env.PRISMIC_ACCESS_TOKEN ||
+  'MC5ZQ3o4ZGhFQUFHVFpsX1Jz.DVE777-977-9Ru-_ve-_vRHvv73vv70KIe-_ve-_ve-_ve-_ve-_vXZh77-977-977-977-9T--_vTLvv73vv70PcO-_vQ';
 
 async function fetchCmsMasterRef() {
   const res = await fetch(`${API_REF_URL}${API_TOKEN ? `?access_token=${API_TOKEN}` : ''}`);
@@ -120,42 +122,47 @@ export async function getAllSpeakers(): Promise<Speaker[]> {
 
 export async function getAllStages(): Promise<Stage[]> {
   const data = await fetchCmsAPI(`
-    {
-      allStages(first: 100, sortBy: name_ASC) {
-        edges {
-          node {
-            name
-            _meta {
-              uid
+  {
+    allStages(first: 100, sortBy: name_ASC) {
+      edges {
+        node {
+          name
+          _meta {
+            uid
+          }
+          stream {
+            _linkType
+            ...on _ExternalLink {
+              url
             }
-            stream {
+          }
+          discord {
+            _linkType
+            ...on _ExternalLink {
+              url
+            }
+          }
+          schedule {
+            talk {
               _linkType
-              ...on _ExternalLink {
-                url
-              }
+              ...on Talk {
+                title
+                start
+                end
+                video {
+                 _linkType
+                  ...on _ExternalLink {
+              url
             }
-            discord {
-              _linkType
-              ...on _ExternalLink {
-                url
-              }
-            }
-            schedule {
-              talk {
-                _linkType
-                ...on Talk {
-                  title
-                  start
-                  end
-                  speakers {
-                    speaker {
-                      ...on Speaker {
-                        name
-                        _meta {
-                          uid
-                        }
-                        image
+                }
+                speakers {
+                  speaker {
+                    ...on Speaker {
+                      name
+                      _meta {
+                        uid
                       }
+                      image
                     }
                   }
                 }
@@ -165,22 +172,25 @@ export async function getAllStages(): Promise<Stage[]> {
         }
       }
     }
+  }
   `);
 
   const reformatedData = data.allStages.edges.map((edge: any) => {
     return {
       name: richTextAsText(edge.node.name),
       slug: edge.node._meta.uid,
-      stream: getLinkUrl(edge.node.twitter),
-      discord: getLinkUrl(edge.node.twitter),
+      stream: getLinkUrl(edge.node.stream),
+      discord: getLinkUrl(edge.node.discord),
       schedule: edge.node.schedule
         .filter((item: any) => item.talk)
         .map((item: any) => {
+          // console.log('item', item);
           if (item.talk)
             return {
               title: richTextAsText(item.talk.title),
               start: item.talk.start,
               end: item.talk.end,
+              video: getLinkUrl(item.talk?.video),
               speaker: item.talk.speakers.map((item: any) => ({
                 name: richTextAsText(item.speaker.name),
                 slug: item.speaker._meta.uid,
@@ -194,85 +204,220 @@ export async function getAllStages(): Promise<Stage[]> {
         })
     };
   });
-
+  // console.log('reformatedData', reformatedData[0].schedule);
   return reformatedData;
 }
 
 export async function getAllSponsors(): Promise<Sponsor[]> {
   const data = await fetchCmsAPI(`
-    {
-      allCompanys(first: 100, sortBy: tier_rank_ASC) {
-        edges {
-          node {
-            name
-            description
-            _meta {
-              uid
+  {
+    allSponsors(first: 100, sortBy: name_ASC) {
+      edges {
+        node {
+          _meta {
+            uid
+          }
+          logo
+          name
+          site_link {
+            _linkType
+            ... on _ExternalLink {
+              url
             }
-            website {
-              _linkType
-              ...on _ExternalLink {
-                url
-              }
+          }
+          description
+        }
+      }
+    }
+  }
+  
+  `);
+
+  const reformatedData = data.allSponsors.edges.map((edge: any) => {
+    return {
+      name: richTextAsText(edge.node.name),
+      bio: richTextAsText(edge.node.description),
+      slug: edge.node._meta.uid,
+      site_link: getLinkUrl(edge.node.site_link),
+      image: {
+        url: edge.node.logo?.url.replace('compress,format', 'format') || 'https://images.prismic.io'
+      }
+    };
+    // return {
+    //   name: richTextAsText(edge.node.name),
+    //   description: richTextAsText(edge.node.description),
+    //   slug: edge.node._meta.uid,
+    //   website: getLinkUrl(edge.node.website),
+    //   callToAction: richTextAsText(edge.node.call_to_action),
+    //   callToActionLink: getLinkUrl(edge.node.call_to_action_link),
+    //   discord: getLinkUrl(edge.node.discord),
+    //   youtubeSlug: edge.node.youtube_slug,
+    //   tier: edge.node.tier,
+    //   links: edge.node.links.map((item: any) => ({
+    //     url: getLinkUrl(item.link),
+    //     text: item.link_text
+    //   })),
+    //   cardImage: {
+    //     url:
+    //       edge.node.card_image?.url.replace('compress,format', 'format') ||
+    //       'https://images.prismic.io'
+    //   },
+    //   logo: {
+    //     url: edge.node.logo?.url.replace('compress,format', 'format') || 'https://images.prismic.io'
+    //   }
+    // };
+  });
+
+  return reformatedData;
+}
+
+export async function getAllChallengeSets(): Promise<Sponsor[]> {
+  const data = await fetchCmsAPI(`
+  {
+    allChallenge_sets(first: 100, sortBy: title_ASC) {
+      edges {
+        node {
+          _meta {
+            uid
+          }
+          title
+          display_image
+          description
+          # stream {
+          #   _linkType
+          #   ...on _ExternalLink {
+          #     url
+          #   }
+          # }
+          video {
+            _linkType
+            ...on _ExternalLink {
+              url
             }
-            call_to_action
-            call_to_action_link {
-              _linkType
-              ...on _ExternalLink {
-                url
-              }
-            }
-            discord {
-              _linkType
-              ...on _ExternalLink {
-                url
-              }
-            }
-            youtube_slug
-            tier
-            links {
-              link {
-                _linkType
-                ...on _ExternalLink {
-                  url
+          }
+          sponsors {
+            sponsor{
+              ...on Sponsor {
+                _meta {
+                  uid
+                }
+                name
+                description
+                site_link {
+                  _linkType
+                  ...on _ExternalLink {
+                    url
+                  }
                 }
               }
-              link_text
             }
-            card_image
-            logo
+          }
+          resource_links {
+            link_text
+            external_links{
+                ...on _ExternalLink {
+                url
+              }
+            }
+          }
+          liasons {
+            liason{
+              ...on Organizer {
+                _meta {
+                  uid
+                }
+                name
+                # description
+                # site_link {
+                #   _linkType
+                #   ...on _ExternalLink {
+                #     url
+                #   }
+                # }
+              }
+            }
+          }
+          # schedule {
+          #   talk {
+          #     _linkType
+          #     ...on Talk {
+          #       title
+          #       start
+          #       end
+          #       speakers {
+          #         speaker {
+          #           ...on Speaker {
+          #             name
+          #             _meta {
+          #               uid
+          #             }
+          #             image
+          #           }
+          #         }
+          #       }
+          #     }
+          #   }
           }
         }
       }
     }
+  
+  
+  
   `);
 
-  const reformatedData = data.allCompanys.edges.map((edge: any) => {
+  const reformatedData = data.allChallenge_sets.edges.map((edge: any) => {
     return {
-      name: richTextAsText(edge.node.name),
+      title: richTextAsText(edge.node.title),
       description: richTextAsText(edge.node.description),
       slug: edge.node._meta.uid,
-      website: getLinkUrl(edge.node.website),
-      callToAction: richTextAsText(edge.node.call_to_action),
-      callToActionLink: getLinkUrl(edge.node.call_to_action_link),
-      discord: getLinkUrl(edge.node.discord),
-      youtubeSlug: edge.node.youtube_slug,
-      tier: edge.node.tier,
-      links: edge.node.links.map((item: any) => ({
-        url: getLinkUrl(item.link),
-        text: item.link_text
-      })),
       cardImage: {
         url:
-          edge.node.card_image?.url.replace('compress,format', 'format') ||
+          edge.node.display_image?.url.replace('compress,format', 'format') ||
           'https://images.prismic.io'
       },
-      logo: {
-        url: edge.node.logo?.url.replace('compress,format', 'format') || 'https://images.prismic.io'
-      }
+      video: getLinkUrl(edge.node.video),
+      sponsors: edge.node.sponsors
+        ? edge.node.sponsors.map((item: any) => ({
+            name: richTextAsText(item.name),
+            description: richTextAsText(item.description),
+            site_link: getLinkUrl(item.site_link)
+            // text: item.link_text
+          }))
+        : [],
+      resource_links: edge.node.resource_links
+        ? edge.node.resource_links.map((item: any) => ({
+            text: item.link_text,
+            url: getLinkUrl(item.external_links)
+          }))
+        : []
+      // TODO: Liasons
     };
+    // return {
+    //   title: richTextAsText(edge.node.title),
+    //   // description: richTextAsText(edge.node.description),
+    //   // slug: edge.node._meta.uid,
+    //   // website: getLinkUrl(edge.node.website),
+    //   // callToAction: richTextAsText(edge.node.call_to_action),
+    //   // callToActionLink: getLinkUrl(edge.node.call_to_action_link),
+    //   // video: getLinkUrl(edge.node.video)
+    //   // discord: getLinkUrl(edge.node.discord),
+    //   // youtubeSlug: edge.node.youtube_slug,
+    //   // tier: edge.node.tier,
+    //   // links: edge.node.links.map((item: any) => ({
+    //   //   url: getLinkUrl(item.link),
+    //   //   text: item.link_text
+    //   // })),
+    //   // cardImage: {
+    //   //   url:
+    //   //     edge.node.card_image?.url.replace('compress,format', 'format') ||
+    //   //     'https://images.prismic.io'
+    //   // },
+    //   // logo: {
+    //   //   url: edge.node.logo?.url.replace('compress,format', 'format') || 'https://images.prismic.io'
+    //   // }
+    // };
   });
-
   return reformatedData;
 }
 
@@ -316,6 +461,53 @@ export async function getAllJobs(): Promise<Job[]> {
       discord: getLinkUrl(edge.node.discord),
       link: getLinkUrl(edge.node.link),
       rank: edge.node.rank
+    };
+  });
+
+  return reformatedData;
+}
+export async function getAllTeams(): Promise<Job[]> {
+  const data = await fetchCmsAPI(`
+  {
+    allTeams(first: 100, sortBy: team_name_ASC) {
+      edges {
+        node {
+          _meta {
+            uid
+          }
+          team_name
+          team_type
+          challenge_set {
+            ...on Challenge_set{
+              title
+            }
+          }
+          
+          team_members {
+            full_name
+            role
+          }
+          }
+        }
+      }
+    }
+  `);
+
+  const reformatedData = data.allTeams.edges.map((edge: any) => {
+    return {
+      // id: edge.node._meta.id,
+      title: richTextAsText(edge.node.team_name),
+      description: richTextAsText(edge.node.challenge_set.title),
+      team_members: edge.node.team_members
+        ? edge.node.team_members.map((item: any) => ({
+            name: richTextAsText(item.full_name)
+            // description: richTextAsText(item.description),
+            // site_link: getLinkUrl(item.site_link)
+            // text: item.link_text
+          }))
+        : []
+      // link: getLinkUrl(edge.node.link),
+      // rank: edge.node.rank
     };
   });
 

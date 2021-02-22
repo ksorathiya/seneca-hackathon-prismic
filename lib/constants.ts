@@ -42,11 +42,13 @@ export const SAMPLE_TICKET_NUMBER = 1234;
 export const NAVIGATION = [
   {
     name: 'Showcase',
-    route: '/stage/a'
+    route:
+      // '/stage/address-problem-gambling-video-game-and-social-media-addiction-through-creation-of-mental-health-support-networks'
+      '/stage/a'
   },
   {
     name: 'Challenge Sets',
-    route: '/expo'
+    route: '/challengesets'
   },
   // {
   //   name: 'Challenge Set 2',
@@ -65,8 +67,8 @@ export const NAVIGATION = [
     route: '/schedule'
   },
   {
-    name: 'Participants',
-    route: '/participants'
+    name: 'Teams',
+    route: '/teams'
   },
   {
     name: 'Organizers',
@@ -74,7 +76,7 @@ export const NAVIGATION = [
   },
   {
     name: 'Sponsors',
-    route: '/jobs'
+    route: '/sponsors'
   }
 ];
 

@@ -5,6 +5,6 @@
   "datocmsProjectId": "37685",
   "deploymentType": "vercel",
   "buildCommand": "npm run build",
-  "datocmsApiTokenEnvName": "f4793ae97f58c543d8db3bb55c34bf",
+  "datocmsApiTokenEnvName": "DATOCMS_READ_ONLY_API_TOKEN",
   "livePreviewUrl": "https://demo.vercel.events/"
 }

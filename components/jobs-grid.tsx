@@ -26,7 +26,7 @@ function CompanyJobs({ jobs }: Props) {
     <div className={styles.grid}>
       {jobs.map(job => (
         <a
-          key={job.id}
+          key={job.title}
           className={styles.card1}
           href={job.link}
           target="_blank"
@@ -35,10 +35,19 @@ function CompanyJobs({ jobs }: Props) {
           <div className={styles.cardBody}>
             <div>
               <h3 className={styles.title}>{job.title}</h3>
+              <br />
+              <b>Challenge Set:</b>
               <p className={styles.company}>{job.companyName}</p>
               <p className={styles.description}>{job.description}</p>
+              <br />
+              <b>Team Members</b>
+              <ul>
+                {job.team_members.map(member => {
+                  return <li>{member.name}</li>;
+                })}
+              </ul>
             </div>
-            <p className={styles.link}>
+            {/* <p className={styles.link}>
               Learn More
               <svg
                 className={styles.icon}
@@ -56,7 +65,7 @@ function CompanyJobs({ jobs }: Props) {
                 <path d="M15 3h6v6" />
                 <path d="M10 14L21 3" />
               </svg>
-            </p>
+            </p> */}
           </div>
         </a>
       ))}

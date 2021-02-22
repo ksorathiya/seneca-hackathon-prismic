@@ -66,16 +66,16 @@ export default function Layout({ children, className, hideNav, layoutStyles }: P
               ))}
             </div>
             <div className={cn(styles['header-right'])}>
-            <a
-              href="https://b279fc3wutp.typeform.com/to/nsDQjSai"
-              
-              style={{position:"relative",top:0}}
-              className={cn(formStyles.submit, formStyles.register, formStyles['loading'])}
-              // disabled={formState === 'loading'}
-            >
-              {/* {formState === 'loading' ? <LoadingDots size={4} /> : <>Join</>} */}
-              Submit
-            </a>
+              <a
+                // href="https://b279fc3wutp.typeform.com/to/nsDQjSai"
+                href="https://forms.gle/ySbE4VFatABbi5Qa7"
+                style={{ position: 'relative', top: 0 }}
+                className={cn(formStyles.submit, formStyles.register, formStyles['loading'])}
+                // disabled={formState === 'loading'}
+              >
+                {/* {formState === 'loading' ? <LoadingDots size={4} /> : <>Join</>} */}
+                Submit
+              </a>
             </div>
           </header>
         )}

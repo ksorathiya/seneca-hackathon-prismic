@@ -37,7 +37,7 @@ export default function ScheduleSidebar({ allStages }: Props) {
 
   return (
     <div className={styles.schedule}>
-      <h3 className={styles.header}>Schedule</h3>
+      <h3 className={styles.header}>Showcase</h3>
       <p>{SHORT_DATE}</p>
       <Select
         aria-label="Select a stage"
@@ -54,9 +54,10 @@ export default function ScheduleSidebar({ allStages }: Props) {
           </option>
         ))}
       </Select>
+      {/* <TalkCard key={'Keynote'} talk={talk} showTime /> */}
       <div className={styles.talks}>
         {currentStage?.schedule.map(talk => (
-          <TalkCard key={talk.title} talk={talk} showTime />
+          <TalkCard currentStage={currentStage} key={talk.title} talk={talk} showTime />
         ))}
       </div>
     </div>

@@ -28,7 +28,7 @@ type Props = {
 export default function SponsorSection({ sponsor }: Props) {
   return (
     <>
-      <Link href="/expo">
+      <Link href="/challengesets">
         <a className={styles.backlink}>
           <svg
             viewBox="0 0 24 24"
@@ -52,8 +52,9 @@ export default function SponsorSection({ sponsor }: Props) {
           allow="picture-in-picture"
           allowFullScreen
           frameBorder="0"
-          height="100%"
-          src={`https://youtube.com/embed/${sponsor.youtubeSlug}`}
+          // height="500px"
+          // src={`https://youtube.com/embed/${sponsor.youtubeSlug}`}
+          src={sponsor.video}
           title={sponsor.name}
           width="100%"
         />
@@ -87,11 +88,11 @@ export default function SponsorSection({ sponsor }: Props) {
               height={"300%"}
               width={"300%"}
             /> */}
-            <h1 className={styles.name}>{sponsor.name}</h1>
+            <h1 className={styles.name}>{sponsor.title}</h1>
           </div>
           <p className={styles.description}>{sponsor.description}</p>
           <div className={styles['sponsor-details']}>
-            <a
+            {/* <a
               href={sponsor.callToActionLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -100,8 +101,8 @@ export default function SponsorSection({ sponsor }: Props) {
             >
               Resources
               {sponsor.callToAction}
-            </a>
-            <a
+            </a> */}
+            {/* <a
               href={sponsor.discord}
               target="_blank"
               rel="noopener noreferrer"
@@ -109,11 +110,11 @@ export default function SponsorSection({ sponsor }: Props) {
               className={cn(styles.button, styles['button-link'])}
             >
               Chat on Discord
-            </a>
+            </a> */}
           </div>
           <div className={styles.resources}>
             <h2 className={styles.heading}>Resources</h2>
-            {sponsor.links.map(link => (
+            {sponsor.resource_links.map(link => (
               <a
                 key={link.url}
                 href={link.url}

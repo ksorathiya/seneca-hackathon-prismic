@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
- .card1 {
+.card1 {
   top: 0px;
   position: relative;
   display: flex;
@@ -112,7 +112,7 @@
 }
 
 .description {
-  color: #FFF;
+  color: #fff;
   margin-top: var(--space);
   margin-bottom: 0;
   line-height: 1.4;

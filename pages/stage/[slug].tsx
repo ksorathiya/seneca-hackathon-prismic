@@ -20,7 +20,7 @@ import Page from '@components/page';
 import StageContainer from '@components/stage-container';
 import Layout from '@components/layout';
 
-import { getAllStages } from '@lib/cms-api';
+import { getAllStages, getAllChallengeSets } from '@lib/cms-api';
 import { Stage } from '@lib/types';
 import { META_DESCRIPTION } from '@lib/constants';
 
@@ -30,9 +30,8 @@ type Props = {
 };
 
 export default function StagePage({ stage, allStages }: Props) {
-  console.log(allStages, stage);
   const meta = {
-    title: 'Demo',
+    title: 'Showcase',
     description: META_DESCRIPTION
   };
 
@@ -48,6 +47,17 @@ export default function StagePage({ stage, allStages }: Props) {
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = params?.slug;
   const stages = await getAllStages();
+  // const challengesets = await getAllChallengeSets();
+  // const stages = challengesets.map(item => {
+  //   return {
+  //     name: item.title,
+  //     slug: item.slug,
+  //     stream: item.video,
+  //     discord: '',
+  //     schedule: []
+  //   };
+  // });
+
   const stage = stages.find((s: Stage) => s.slug === slug) || null;
 
   if (!stage) {
@@ -66,7 +76,19 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  // const challengesets = await getAllChallengeSets();
   const stages = await getAllStages();
+  // const stages = challengesets.map(item => {
+  //   return {
+  //     name: item.title,
+  //     slug: item.slug,
+  //     stream: item.video,
+  //     discord: '',
+  //     schedule: []
+  //   };
+  // });
+
+  // const stages = await getAllStages();
   const slugs = stages.map((s: Stage) => ({ params: { slug: s.slug } }));
 
   return {

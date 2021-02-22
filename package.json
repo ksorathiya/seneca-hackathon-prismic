@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "next",
     "start": "next start",
-    "build": "next build",
+    "build": "next build && next export",
     "license": "addlicense -l apache -c 'Vercel Inc.' components/**/* lib/**/* pages/**/* styles/**/* *.ts *.js"
   },
   "dependencies": {
@@ -35,6 +35,7 @@
     "react-dom": "17.0.1",
     "smoothscroll-polyfill": "0.4.4",
     "swr": "0.3.9",
+    "underscore": "^1.12.0",
     "validator": "13.5.2",
     "vanilla-tilt": "1.7.0"
   },
@@ -50,6 +51,7 @@
     "@types/reach__skip-nav": "0.1.1",
     "@types/react": "17.0.0",
     "@types/smoothscroll-polyfill": "0.3.1",
+    "@types/underscore": "^1.10.24",
     "@types/validator": "13.1.1",
     "@typescript-eslint/eslint-plugin": "4.10.0",
     "@typescript-eslint/parser": "4.10.0",

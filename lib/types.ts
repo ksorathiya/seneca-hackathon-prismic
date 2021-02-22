@@ -26,6 +26,7 @@ export type Speaker = {
   twitter: string;
   github: string;
   company: string;
+  site_link: string;
   talk: Talk;
   image: Image;
   imageSquare: Image;
@@ -53,7 +54,10 @@ export type Link = {
 
 export type Sponsor = {
   name: string;
+  title: string;
+  resource_links: SponsorLink[];
   description: string;
+  video: string;
   slug: string;
   website: string;
   callToAction: string;
@@ -75,9 +79,11 @@ export type Job = {
   id: string;
   companyName: string;
   title: string;
+  team_members: Speaker[];
   description: string;
   discord: string;
   link: string;
+  name: string;
   rank: number;
 };
 

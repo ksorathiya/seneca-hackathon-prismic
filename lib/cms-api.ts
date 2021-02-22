@@ -26,14 +26,16 @@ let cmsApi: {
   getAllStages: () => Promise<Stage[]>;
   getAllSponsors: () => Promise<Sponsor[]>;
   getAllJobs: () => Promise<Job[]>;
+  getAllChallengeSets: () => Promise<Sponsor[]>;
+  getAllTeams: () => Promise<Sponsor[]>;
 };
 
 if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
-  cmsApi = datoCmsApi;
+  // cmsApi = datoCmsApi;
 } else if (process.env.CONTENTFUL_ACCESS_TOKEN && process.env.CONTENTFUL_SPACE_ID) {
-  cmsApi = contentfulApi;
+  // cmsApi = contentfulApi;
 } else if (process.env.STORYBLOK_PREVIEW_TOKEN) {
-  cmsApi = storyblokApi;
+  // cmsApi = storyblokApi;
 } else if (process.env.PRISMIC_REPO_ID) {
   cmsApi = prismicApi;
 } else if (
@@ -41,14 +43,15 @@ if (process.env.DATOCMS_READ_ONLY_API_TOKEN) {
   process.env.AGILITY_API_FETCH_KEY &&
   process.env.AGILITY_API_PREVIEW_KEY
 ) {
-  cmsApi = agilityApi;
+  // cmsApi = agilityApi;
 } else {
-  cmsApi = {
-    getAllSpeakers: async () => [],
-    getAllStages: async () => [],
-    getAllSponsors: async () => [],
-    getAllJobs: async () => []
-  };
+  // cmsApi = {
+  //   getAllSpeakers: async () => [],
+  //   getAllStages: async () => [],
+  //   getAllSponsors: async () => [],
+  //   getAllChallengeSets: async () => [],
+  //   getAllJobs: async () => []
+  // };
 }
 
 export async function getAllSpeakers(): Promise<Speaker[]> {
@@ -63,6 +66,13 @@ export async function getAllSponsors(): Promise<Sponsor[]> {
   return cmsApi.getAllSponsors();
 }
 
+export async function getAllChallengeSets(): Promise<Sponsor[]> {
+  return cmsApi.getAllChallengeSets();
+}
+
 export async function getAllJobs(): Promise<Job[]> {
   return cmsApi.getAllJobs();
+}
+export async function getAllTeams(): Promise<Job[]> {
+  return cmsApi.getAllTeams();
 }

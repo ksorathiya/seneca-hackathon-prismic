@@ -21,7 +21,7 @@
   display: flex;
   flex-wrap: wrap;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 24px;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
@@ -69,7 +69,7 @@
 .card1:hover .title {
   color: #fafafa;
 }
-.card1:hover .name  {
+.card1:hover .name {
   color: #fafafa;
 }
 
@@ -80,7 +80,7 @@
   flex-direction: column;
   background-clip: content-box, border-box;
   background-image: linear-gradient(#55585a, #55585a), linear-gradient(to right, #333333, #333333);
-  
+
   cursor: pointer;
 }
 .card:hover,
@@ -108,6 +108,9 @@
   object-fit: cover;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+}
+.imageWrapper > div {
+  display: block !important;
 }
 
 @media (max-width: 471px) {
